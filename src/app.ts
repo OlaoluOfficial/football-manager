@@ -3,10 +3,13 @@ import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import db from './db/connect';
 
 import routes from './routes/routes';
 
 const app = express();
+
+db();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
