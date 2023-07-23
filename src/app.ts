@@ -1,12 +1,12 @@
-import createError from 'http-errors';
-import express from 'express';
 import path from 'path';
-import cookieParser from 'cookie-parser';
-require('express-async-errors');
+require('dotenv').config();
 import logger from 'morgan';
 import db from './db/connect';
-
+import express from 'express';
+require('express-async-errors');
 import routes from './routes/routes';
+import createError from 'http-errors';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -22,10 +22,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-routes(app)
+routes(app);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
